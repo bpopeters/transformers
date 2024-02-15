@@ -613,6 +613,7 @@ class OpusState:
             wemb_tensor = nn.Parameter(torch.FloatTensor(self.wemb))
             bias_tensor = nn.Parameter(torch.FloatTensor(self.final_bias))
             model.model.shared.weight = wemb_tensor
+            model.lm_head.weight = model.model.shared.weight
             model.model.encoder.embed_tokens = model.model.decoder.embed_tokens = model.model.shared
         else:
             wemb_tensor = nn.Parameter(torch.FloatTensor(self.wemb))
